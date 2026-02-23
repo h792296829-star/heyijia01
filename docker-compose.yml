@@ -2,11 +2,11 @@ from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 
-from .db import Base, engine, get_db
-from .models import Scene, Node, Run
-from .schemas import SceneCreate, SceneOut, SceneDetail, NodeIn, RunCreate, RunOut
-from .seed import seed_if_empty
-from .service import run_audit
+from db import Base, engine, get_db
+from models import Scene, Node, Run
+from schemas import SceneCreate, SceneOut, SceneDetail, NodeIn, RunCreate, RunOut
+from seed import seed_if_empty
+from service import run_audit
 
 Base.metadata.create_all(bind=engine)
 
@@ -24,7 +24,7 @@ app.add_middleware(
 @app.on_event("startup")
 def _startup():
     # seed demo data once
-    from .db import SessionLocal
+    from db import SessionLocal
     db = SessionLocal()
     try:
         seed_if_empty(db)
