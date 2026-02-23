@@ -1,8 +1,8 @@
 import json
 from typing import Dict, Any, List, Tuple
 from sqlalchemy.orm import Session
-from .models import Scene, Node, Run
-from .llm import LLMClient
+from models import Scene, Node, Run
+from llm import LLMClient
 
 DEFAULT_MODEL = "qwen-plus"  # 可在请求里覆盖
 
